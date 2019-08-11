@@ -114,6 +114,56 @@ hello is a shorthand for:
 
     [$h,$e,$l,$l,$o].
 
+Sort:
+
+    c(sort).
+    sort:sort([5, 4, 3, 2, 1]).
+    c(perms).
+    perms:perms([1, 2, 3, 4]).
+    gcd:gcd(18872, 4).
+    c(pythagorean).
+    pythagorean:pyth(15).
+    
+    L = ["I","like","Erlang"].
+    lists:foldl(fun(X, Sum) -> length(X) + Sum end, 0, L).
+    
+    Upcase =  fun(X) when $a =< X,  X =< $z -> X + $A - $a;
+    (X) -> X 
+    end.
+    Upcase_word = 
+    fun(X) -> lists:map(Upcase, X) end.
+    Upcase_word("Erlang").
+    lists:map(Upcase_word, L).
+    lists:mapfoldl(fun(Word, Sum) ->
+    {Upcase_word(Word), Sum + length(Word)}
+    end, 0, L).
+    Big =  fun(X) -> if X > 10 -> true; true -> false end end.
+    lists:any(Big, [1,2,3,4]).
+    lists:any(Big, [1,2,3,12,5]).
+    lists:all(Big, [1,2,3,4,12,6]).
+    lists:all(Big, [12,13,14,15]).
+    lists:foreach(fun(X) -> io:format("~w~n",[X]) end, [1,2,3,4]).
+    lists:filter(Big, [500,12,2,45,6,7]).
+    lists:takewhile(Big, [200,500,45,5,3,45,6]).
+    lists:dropwhile(Big, [200,500,45,5,3,45,6]).
+    lists:splitwith(Big, [200,500,45,5,3,45,6]).
+    
+    Adder = fun(X) -> fun(Y) -> X + Y end end.
+    Add6 = Adder(6).
+    Add6(20).
+    
+    P1 = token_parser:pconst(a).
+    P1([a, b, c]).
+    P1([x, y, z]).
+    
+    c(parse).
+    parse:parse([a,c]).
+    parse:parse([a,d]). 
+    parse:parse([b,c]).   
+    parse:parse([b,d]). 
+    parse:parse([a,b]).   
+    
+    
 Adjacent strings are concatenated:
 
     "a" "/aaaba".
