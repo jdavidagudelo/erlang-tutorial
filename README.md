@@ -70,6 +70,21 @@ Functions:
 A function declaration sequence of function clauses
 followed by semicolons and terminated by period.
  
+ Records:
+    
+    c(person).
+    rd(person, {name = "", phone= [], address}).
+    P = #person{phone=[0,8,2,3,4,3,1,2], name="Stalin"}.
+    P#person.name.
+    P#person.phone.
+    is_record(P, person).
+    person:find_phone([#person{phone=[1, 2, 3], name="Hitler"}, #person{phone=[1, 2, 4], name="Stalin"}], "Hitler").
+
+ Record nested:
+ 
+    c(person_nested).
+    person_nested:demo().
+ 
  PID:
  
     self().
@@ -505,11 +520,3 @@ First client:
 
     user_interface:message(fred, 'I am fine').
     user_interface:logoff().
-
-
-    
-
-   
-
-
-    
