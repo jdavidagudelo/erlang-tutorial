@@ -173,12 +173,72 @@ Try catch:
     catch 1 + a.
     A = (catch 1 + 2).
 
+Functions created:
+
+    c(pascal).
+    pascal:pascal(0, 2).
+    pascal:pascal(1, 2).
+    pascal:pascal(1, 3).
+    
+    c(balance).
+    balance:balance("(if (zero? x) max (/ 1 x))").
+    balance:balance("I told him (that it’s not (yet) done). (But he wasn’t listening)").
+    balance:balance(":-)").
+    balance:balance("())(").
+    
+    c(count_change).
+    count_change:count(5, [1, 2, 3]).
+    
+    c(average).
+    average:average([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).
+
+Profiling:
+
+    c(foo).
+    fprof:start().
+    fprof:apply(foo, create_file_slow, [junk, 1024]).
+    fprof:profile().
+    fprof:analyse().
+
+Generate cgrind profile:
+
+    escript C:\Users\jdaaa\PycharmProjects\erlgrind\src\erlgrind C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\out_profile.prof
+
+Debugging:
+    
+    dbg:tracer().
+    dbg:p(all, c).
+    dbg:tp(lists, seq, x).
+    lists:seq(1,10).
+    dbg:fun2ms(fun([M,N]) when N > 3 -> return_trace() end).
+    X=3.
+    dbg:fun2ms(fun([M,N]) when N > X  -> return_trace() end).
+    
+    dbg:fun2ms(fun([M,N]) when N > X, is_atom(M)  -> return_trace() end).
+    dbg:tp({dbg,ltp,0},[{[],[],[{message, two, arguments}, {noexist}]}]).
+    
+    dbg:tracer(port, dbg:trace_port(ip,4711)).
+    
+Run unit tests:
+
+    c(tut8).
+    tut8:test().
+
+Manage system erlang:
+    
+    init:restart().
+    init:reboot().
+    init:stop().
+
 Tail recursion factorial:
 
     c(tail_recursive_factorial).
     tail_recursive_factorial:fact(20).
 
 Tail recursive fibonacci:
+
+    c(fibonacci).
+    fibonacci:test().
 
     c(tail_recursive_fibonacci).
     tail_recursive_fibonacci(17).
