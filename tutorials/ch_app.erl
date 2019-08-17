@@ -4,19 +4,15 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 10. Aug 2019 3:37 PM
+%%% Created : 11. Aug 2019 7:38 PM
 %%%-------------------------------------------------------------------
--module(tail_recursive_factorial).
--author("jdaaa").
+-module(ch_app).
+-behaviour(application).
 
-%% API
--export([fact/1]).
+-export([start/2, stop/1]).
 
+start(_Type, _Args) ->
+    ch_sup:start_link().
 
-fact(0, A) ->
-  A;
-fact(N, A) ->
-  fact(N - 1, N * A).
-
-fact(N) ->
-  fact(N, 1).
+stop(_State) ->
+    ok.

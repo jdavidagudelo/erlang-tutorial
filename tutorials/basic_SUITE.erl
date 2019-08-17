@@ -4,19 +4,19 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 10. Aug 2019 3:56 PM
+%%% Created : 11. Aug 2019 8:13 PM
 %%%-------------------------------------------------------------------
--module(tail_recursive_array_sum).
+-module(basic_SUITE).
 -author("jdaaa").
+-include_lib("common_test/include/ct.hrl").
+-export([all/0]).
+-export([test1/1, test2/1]).
 
-%% API
--export([arr_sum/1]).
+all() -> [test1,test2].
 
+test1(_Config) ->
+1 = 1.
 
-arr_sum([], Sum) ->
-  Sum;
-arr_sum([First|Rest], Sum) ->
-  arr_sum(Rest, Sum + First).
-
-arr_sum([First|Rest]) ->
-  arr_sum(Rest, First).
+test2(_Config) ->
+  A = 0,
+  A.

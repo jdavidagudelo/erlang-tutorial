@@ -152,17 +152,6 @@ Sort:
     Add6 = Adder(6).
     Add6(20).
     
-    P1 = token_parser:pconst(a).
-    P1([a, b, c]).
-    P1([x, y, z]).
-    
-    c(parse).
-    parse:parse([a,c]).
-    parse:parse([a,d]). 
-    parse:parse([b,c]).   
-    parse:parse([b,d]). 
-    parse:parse([a,b]).   
-    
     
 Adjacent strings are concatenated:
 
@@ -219,6 +208,11 @@ Debugging:
     
     dbg:tracer(port, dbg:trace_port(ip,4711)).
     
+
+Run escript:
+
+     escript C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\factorial_script.erl 15
+
 Run unit tests:
 
     c(tut8).
@@ -630,3 +624,17 @@ First client:
 
     user_interface:message(fred, 'I am fine').
     user_interface:logoff().
+
+
+Parser:
+
+    P1 = token_parser:pconst(a).
+    P1([a, b, c]).
+    P1([x, y, z]).
+    
+    c(parse).
+    parse:parse([a,c]).
+    parse:parse([a,d]). 
+    parse:parse([b,c]).   
+    parse:parse([b,d]). 
+    parse:parse([a,b]).   

@@ -13,15 +13,15 @@
 %% API
 -export([fib/1]).
 
-fib_r(1, _, B) ->
+fib(1, _, B) ->
   B;
-fib_r(0, A, _) ->
+fib(0, A, _) ->
   A;
-fib_r(N, A, B) when N > 1 ->
-  fib_r(N - 1, B, A + B).
+fib(N, A, B) when N > 1 ->
+  fib(N - 1, B, A + B).
 
 fib(N) ->
-  fib_r(N, 1, 1).
+  fib(N, 1, 1).
 
 fibonacci_test_() ->
   [?_assert(fib(0) =:= 1),
