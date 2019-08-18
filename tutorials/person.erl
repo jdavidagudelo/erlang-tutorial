@@ -10,5 +10,5 @@ find_phone([#person{name=Name, phone=Phone} | _], Name) ->
     {found,  Phone};
 find_phone([_| T], Name) ->
     find_phone(T, Name);
-find_phone([], Name) ->
+find_phone([], _) ->
     not_found.

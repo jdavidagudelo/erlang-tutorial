@@ -6,8 +6,8 @@ Move to working directory:
 
 Variables cannot be reassigned in the same scope.
     
-    A = 13.
-    A = 2.
+    V = 13.
+    V = 2.
     
 Basic expressions:
 
@@ -16,18 +16,18 @@ Basic expressions:
 
 Expressions:
 
-    1 + 2.
-    +2.
-    -2.
-    1 * 2.
-    1 / 2.
-    1 div 2.
-    1 rem 2.
-    1 band 2.
-    1 bor 2.
-    1 bxor 2.
-    1 bsl 2.
-    1 bsr 2.
+    11 + 2.
+    +13.
+    -13.
+    1 * 13.
+    13 / 1.
+    13 div 2.
+    13 rem 2.
+    13 band 2.
+    13 bor 2.
+    13 bxor 2.
+    13 bsl 2.
+    13 bsr 2.
     
     not true.
     true or false.
@@ -38,17 +38,17 @@ Expressions:
     false orelse 2.
     true andalso 1.
     
-    [1, 2, 3] ++ [4, 5, 6, 7].
-    [1, 2, 3] -- [4, 5, 6, 7].
+    [1, 2, 3, 13] ++ [4, 5, 6, 7].
+    [1, 2, 3, 13] -- [4, 5, 6, 7, 13].
     
 Numbers:
 
-    13
+    13.
     $\r.
-    2#101.
-    1.3.
-    1.3e3.
-    1.3e-3.
+    2#1101.
+    13.0.
+    1.3e13.
+    1.3e-13.
 
 Atoms:
 
@@ -57,20 +57,21 @@ Atoms:
       'Monday'.
       'Phone number'.
  
- Binaries:
+Binaries:
  
-    <<10, 20>>.
+    <<10, 20, 13>>.
     <<"ABC">>.
     <<1:1,0:1>>.
  
 Functions:
  
     Fun1 = fun (X) -> X+1 end.
+    Fun1(12).
     
 A function declaration sequence of function clauses
 followed by semicolons and terminated by period.
  
- Records:
+Records:
     
     c(person).
     rd(person, {name = "", phone= [], address}).
@@ -80,24 +81,24 @@ followed by semicolons and terminated by period.
     is_record(P, person).
     person:find_phone([#person{phone=[1, 2, 3], name="Hitler"}, #person{phone=[1, 2, 4], name="Stalin"}], "Hitler").
 
- Record nested:
+Record nested:
  
     c(person_nested).
     person_nested:demo().
  
- PID:
- 
+PID:
+    
     self().
  
- Tuples:
+Tuples:
  
-    P = {adam,24,{july,29}}.
-    element(1, P).
-    P2 = setelement(2, P, 25).
-    tuple_size(P).
-    tuple_size(P2).
+    T = {adam,24,{july,29}}.
+    element(1, T).
+    T2 = setelement(2, T, 25).
+    tuple_size(T).
+    tuple_size(T2).
  
- Maps:
+Maps:
  
     M1 = #{name=>adam,age=>24,date=>{july,29}}.
     maps:get(name,M1).
@@ -110,48 +111,9 @@ Latest key in map takes precedence:
 
     #{1 => a, 1 => b}.
 
-hello is a shorthand for:
+"hello" is a shorthand for:
 
     [$h,$e,$l,$l,$o].
-
-Sort:
-
-    c(sort).
-    sort:sort([5, 4, 3, 2, 1]).
-    c(perms).
-    perms:perms([1, 2, 3, 4]).
-    gcd:gcd(18872, 4).
-    c(pythagorean).
-    pythagorean:pyth(15).
-    
-    L = ["I","like","Erlang"].
-    lists:foldl(fun(X, Sum) -> length(X) + Sum end, 0, L).
-    
-    Upcase =  fun(X) when $a =< X,  X =< $z -> X + $A - $a;
-    (X) -> X 
-    end.
-    Upcase_word = 
-    fun(X) -> lists:map(Upcase, X) end.
-    Upcase_word("Erlang").
-    lists:map(Upcase_word, L).
-    lists:mapfoldl(fun(Word, Sum) ->
-    {Upcase_word(Word), Sum + length(Word)}
-    end, 0, L).
-    Big =  fun(X) -> if X > 10 -> true; true -> false end end.
-    lists:any(Big, [1,2,3,4]).
-    lists:any(Big, [1,2,3,12,5]).
-    lists:all(Big, [1,2,3,4,12,6]).
-    lists:all(Big, [12,13,14,15]).
-    lists:foreach(fun(X) -> io:format("~w~n",[X]) end, [1,2,3,4]).
-    lists:filter(Big, [500,12,2,45,6,7]).
-    lists:takewhile(Big, [200,500,45,5,3,45,6]).
-    lists:dropwhile(Big, [200,500,45,5,3,45,6]).
-    lists:splitwith(Big, [200,500,45,5,3,45,6]).
-    
-    Adder = fun(X) -> fun(Y) -> X + Y end end.
-    Add6 = Adder(6).
-    Add6(20).
-    
     
 Adjacent strings are concatenated:
 
@@ -162,7 +124,34 @@ Try catch:
     catch 1 + a.
     A = (catch 1 + 2).
 
-Functions created:
+Run escript:
+
+    escript C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\factorial_script.erl 15
+
+Manage system erlang:
+    
+    init:restart().
+    init:reboot().
+    init:stop(). 
+   
+Compile a .erl file:
+    
+    c(tut).
+
+Run a compiled file:
+
+    tut:double(13).
+
+Compile Fact function:
+
+    c(tut1).
+    
+    
+Execute fact function:
+
+    tut1:fac(13).
+
+Multiple functions examples:
 
     c(pascal).
     pascal:pascal(0, 2).
@@ -180,87 +169,39 @@ Functions created:
     
     c(average).
     average:average([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).
-
-Profiling:
-
-    c(foo).
-    fprof:start().
-    fprof:apply(foo, create_file_slow, [junk, 1024]).
-    fprof:profile().
-    fprof:analyse().
-
-Generate cgrind profile:
-
-    escript C:\Users\jdaaa\PycharmProjects\erlgrind\src\erlgrind C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\out_profile.prof
-
-Debugging:
     
-    dbg:tracer().
-    dbg:p(all, c).
-    dbg:tp(lists, seq, x).
-    lists:seq(1,10).
-    dbg:fun2ms(fun([M,N]) when N > 3 -> return_trace() end).
-    X=3.
-    dbg:fun2ms(fun([M,N]) when N > X  -> return_trace() end).
+    c(perms).
+    perms:perms([1, 2, 3, 4]).
+    gcd:gcd(18872, 4).
+    c(pythagorean).
+    pythagorean:pyth(15).
     
-    dbg:fun2ms(fun([M,N]) when N > X, is_atom(M)  -> return_trace() end).
-    dbg:tp({dbg,ltp,0},[{[],[],[{message, two, arguments}, {noexist}]}]).
-    
-    dbg:tracer(port, dbg:trace_port(ip,4711)).
-    
-
-Run escript:
-
-     escript C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\factorial_script.erl 15
-
-Run unit tests:
-
-    c(tut8).
-    tut8:test().
-
-Manage system erlang:
-    
-    init:restart().
-    init:reboot().
-    init:stop().
-
 Tail recursion factorial:
 
+    c(factorial).
+    factorial:fact(20).
+    
     c(tail_recursive_factorial).
     tail_recursive_factorial:fact(20).
 
 Tail recursive fibonacci:
 
     c(fibonacci).
+    fibonacci:fib(17).
     fibonacci:test().
 
     c(tail_recursive_fibonacci).
-    tail_recursive_fibonacci(17).
+    tail_recursive_fibonacci:fib(17).
     
 
 Tail recursive array sum:
 
+    c(array_sum).
+    array_sum:array_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).
+    
     c(tail_recursive_array_sum).
-    tail_recursive_array_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).
- 
-   
+    tail_recursive_array_sum:array_sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]).
 
-Compile a .erl file:
-    
-    c(tut).
-
-Run a compiled file:
-
-    tut:double(13).
-
-Compile Fact function:
-
-    c(tut1).
-    
-    
-Execute fact function:
-
-    tut1:fac(13).
     
 Compile atoms code:
 
@@ -301,10 +242,7 @@ List in erlang:
     E1.
     E2.
     R.
-    [A, B | C] = [1, 2].
-    A.
-    B.
-    C.
+    [X, Y | Z] = [1, 2].
     
 List Length function:
 
@@ -313,6 +251,46 @@ List Length function:
 Compile List length:
 
     tut4:list_length([1,2,3,4,5,6,7]).
+
+Maps and filters:
+
+    c(sort).
+    sort:sort([5, 4, 3, 2, 1]).
+    
+    L = ["I","like","Erlang"].
+    lists:foldl(fun(X, Sum) -> length(X) + Sum end, 0, L).
+    
+    c(upcase).
+    upcase:up_case_word("this is an upcase").
+    
+    Upcase =  fun(X) when $a =< X,  X =< $z -> X + $A - $a;
+    (X) -> X 
+    end.
+    
+    Upcase_w = 
+    fun(X) -> lists:map(Upcase, X) end.
+    
+    Upcase_w("Erlang").
+    lists:map(Upcase_w, L).
+    
+    lists:mapfoldl(fun(Word, Sum) ->
+    {Upcase_word(Word), Sum + length(Word)}
+    end, 0, L).
+    Big =  fun(X) -> if X > 10 -> true; true -> false end end.
+    lists:any(Big, [1,2,3,4]).
+    lists:any(Big, [1,2,3,12,5]).
+    lists:all(Big, [1,2,3,4,12,6]).
+    lists:all(Big, [12,13,14,15]).
+    lists:foreach(fun(X) -> io:format("~w~n",[X]) end, [1,2,3,4]).
+    lists:filter(Big, [500,12,2,45,6,7]).
+    lists:takewhile(Big, [200,500,45,5,3,45,6]).
+    lists:dropwhile(Big, [200,500,45,5,3,45,6]).
+    lists:splitwith(Big, [200,500,45,5,3,45,6]).
+    
+    Adder = fun(X) -> fun(Y) -> X + Y end end.
+    Add13 = Adder(13).
+    Add13(0).
+    
 
 In Erlang String are lists:
 
@@ -379,23 +357,24 @@ Applications:
 
 Pulling apart an erlang term using match operator:
  
-    {X, Y} = {paris, {f, 28}}.
-    X.
-    Y.
-    {X, Y} = {london, {f, 36}}.
+    {X_v, Y_v} = {paris, {f, 28}}.
+    X_v.
+    Y_v.
+    {X_v, Y_v} = {london, {f, 36}}.
 
 More about lists:
 
-    [M1|T1] = [paris, london, rome].
-    M1.
-    T1.
-    L1 = [madrid | T1].
+    [M1_v|T1_v] = [paris, london, rome].
+    M1_v.
+    T1_v.
+    L1 = [madrid | T1_v].
     L1.
 
-Reverse a list:
+Reverse a list and running unit tests:
 
     c(tut8).
     tut8:reverse([1,2,3]).
+    tut8:test().
 
 Convert list to celsius:
 
@@ -426,7 +405,16 @@ Complex cases:
     tut11:month_length(2003, feb).
     tut11:month_length(1947, aug).
 
-Erlang BIFs that can be used as guards:
+Expressions valid as guards
+
+* The atom true
+* Other constants (terms and bound variables), all regarded as false
+* Calls to the BIFs specified in table Type Test BIFs
+* Term comparisons
+* Arithmetic expressions
+* Boolean expressions
+* Short-circuit expressions (andalso/orelse)
+
 
     trunc(5.6).
     round(5.6).
@@ -625,6 +613,33 @@ First client:
     user_interface:message(fred, 'I am fine').
     user_interface:logoff().
 
+Profiling:
+
+    c(foo).
+    fprof:start().
+    fprof:apply(foo, create_file_slow, [junk, 1024]).
+    fprof:profile().
+    fprof:analyse().
+
+Generate cgrind profile:
+
+    escript C:\Users\jdaaa\PycharmProjects\erlgrind\src\erlgrind C:\Users\jdaaa\PycharmProjects\erlang_tutorial\tutorials\out_profile.prof
+
+Debugging:
+    
+    dbg:tracer().
+    dbg:p(all, c).
+    dbg:tp(lists, seq, x).
+    lists:seq(1,10).
+    dbg:fun2ms(fun([M,N]) when N > 3 -> return_trace() end).
+    X=3.
+    dbg:fun2ms(fun([M,N]) when N > X  -> return_trace() end).
+    
+    dbg:fun2ms(fun([M,N]) when N > X, is_atom(M)  -> return_trace() end).
+    dbg:tp({dbg,ltp,0},[{[],[],[{message, two, arguments}, {noexist}]}]).
+    
+    dbg:tracer(port, dbg:trace_port(ip,4711)).
+    
 
 Parser:
 

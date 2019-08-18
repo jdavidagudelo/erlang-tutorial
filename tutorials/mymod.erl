@@ -4,19 +4,15 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 10. Aug 2019 3:56 PM
+%%% Created : 18. Aug 2019 12:23 PM
 %%%-------------------------------------------------------------------
--module(tail_recursive_array_sum).
+-module(mymod).
 -author("jdaaa").
 
 %% API
--export([array_sum/1]).
+-export([fact/1]).
 
-
-array_sum([], Sum) ->
-  Sum;
-array_sum([First|Rest], Sum) ->
-  array_sum(Rest, Sum + First).
-
-array_sum([First|Rest]) ->
-  array_sum(Rest, First).
+fact(0) ->
+  1;
+fact(N) ->
+  N * fact(N - 1).

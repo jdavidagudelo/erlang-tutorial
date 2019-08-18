@@ -2,7 +2,7 @@
 
 -export([start_ping/1, start_pong/0,  ping/2, pong/0]).
 
-ping(0, Pong_Node) ->
+ping(0, _) ->
     io:format("ping finished~n", []);
 
 ping(N, Pong_Node) ->

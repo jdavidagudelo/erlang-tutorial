@@ -17,7 +17,7 @@ balanced([], Open) ->
   Open == 0;
 balanced([First|Rest], Open) when First == $( ->
   balanced(Rest, Open + 1);
-balanced([First|Rest], Open) when First == $)->
+balanced([First|Rest], Open) when First == $) ->
   Open > 0 andalso balanced(Rest, Open - 1);
 balanced([_|Rest], Open) ->
   balanced(Rest, Open).

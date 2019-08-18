@@ -4,19 +4,17 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 10. Aug 2019 3:56 PM
+%%% Created : 18. Aug 2019 4:38 PM
 %%%-------------------------------------------------------------------
--module(tail_recursive_array_sum).
+-module(upcase).
 -author("jdaaa").
 
 %% API
--export([array_sum/1]).
+-export([up_case_word/1]).
 
-
-array_sum([], Sum) ->
-  Sum;
-array_sum([First|Rest], Sum) ->
-  array_sum(Rest, Sum + First).
-
-array_sum([First|Rest]) ->
-  array_sum(Rest, First).
+up_case(X) when $a =< X,  X =< $z ->
+  X + $A - $a;
+up_case(X) ->
+  X.
+up_case_word(X) ->
+  lists:map(fun up_case/1, X).

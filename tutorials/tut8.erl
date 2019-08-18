@@ -14,3 +14,4 @@ reverse([], Reversed_List) ->
 reverse_nil_test() -> [] = reverse([]).
 reverse_one_test() -> [1] = reverse([1]).
 reverse_two_test() -> [2,1] = reverse([1,2]).
+reverse_string_test() -> "evol a" = reverse("a love").

@@ -10,6 +10,6 @@
 -module(my1st_SUITE).
  -compile(export_all).
  all() ->
- [mod_exists].
+  [mod_exists].
  mod_exists(_) ->
- {module,mymod} = code:load_file(mymod).
+  {module,mymod} = code:load_file(mymod).
