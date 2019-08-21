@@ -20,7 +20,7 @@ pong() ->
             Ping_PID ! pong,
             pong()
     after 5000 ->
-            io:format("Pong timed out~n", [])
+        io:format("Pong timed out~n", [])
     end.
 
 start_pong() ->

@@ -8,6 +8,9 @@ Variables cannot be reassigned in the same scope.
     
     V = 13.
     V = 2.
+    12 + 1 = 6 + 7.
+    6.5 * 2 = 3.25 * 4.
+    12 + 1 = 11.
     
 Basic expressions:
 
@@ -46,27 +49,56 @@ Numbers:
     13.
     $\r.
     2#1101.
+    3#111.
+    4#31.
+    5#23.
+    13#10.
+    36#D.
     13.0.
     1.3e13.
     1.3e-13.
 
 Atoms:
 
-      hello.
-      phone_number.
-      'Monday'.
-      'Phone number'.
+    hello.
+    '13'.
+    phone_number.
+    'Monday'.
+    'Phone number'.
+    atom = 'atom'.
+    atom@1.
+
+Forbidden atoms:
+
+*   after and andalso band begin bnot bor bsl bsr 
+    bxor case catch cond div end fun if let not 
+    of or orelse query receive rem try when xor
  
 Binaries:
  
     <<10, 20, 13>>.
     <<"ABC">>.
-    <<1:1,0:1>>.
+    <<1, 17, 42:2>>.
+    
+    <<1, 17, 42:0>>.
+    <<1, 17, 42:8>>.
+    <<1, 17, 42:16>>.
+    <<1, 17, 42:128>>.
+    
+    <<1024/utf8>>.
+    <<1024/utf16>>.
+    <<1024/utf32>>.
  
 Functions:
  
     Fun1 = fun (X) -> X+1 end.
     Fun1(12).
+    
+    Fun2 = fun (X) when X >= 5 -> gt; (X) -> lt end.
+    Fun2(7).
+    
+    Fun3 = fun Fact(1) -> 1; Fact(X) when X > 1 -> X * Fact(X - 1) end.
+    Fun3(4).
     
 A function declaration sequence of function clauses
 followed by semicolons and terminated by period.
@@ -123,6 +155,8 @@ Try catch:
 
     catch 1 + a.
     A = (catch 1 + 2).
+    
+    catch throw(hello).
 
 Run escript:
 
@@ -151,6 +185,14 @@ Execute fact function:
 
     tut1:fac(13).
 
+Tail recursion factorial:
+
+    c(factorial).
+    factorial:fact(20).
+    
+    c(tail_recursive_factorial).
+    tail_recursive_factorial:fact(20).
+
 Multiple functions examples:
 
     c(pascal).
@@ -170,19 +212,14 @@ Multiple functions examples:
     c(average).
     average:average([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).
     
+    c(gcd).
+    gcd:gcd(18872, 4).
+    
     c(perms).
     perms:perms([1, 2, 3, 4]).
-    gcd:gcd(18872, 4).
+    
     c(pythagorean).
     pythagorean:pyth(15).
-    
-Tail recursion factorial:
-
-    c(factorial).
-    factorial:fact(20).
-    
-    c(tail_recursive_factorial).
-    tail_recursive_factorial:fact(20).
 
 Tail recursive fibonacci:
 
@@ -193,7 +230,6 @@ Tail recursive fibonacci:
     c(tail_recursive_fibonacci).
     tail_recursive_fibonacci:fib(17).
     
-
 Tail recursive array sum:
 
     c(array_sum).
@@ -292,7 +328,7 @@ Maps and filters:
     Add13(0).
     
 
-In Erlang String are lists:
+In Erlang Strings are lists:
 
     [97,98,99].
 
@@ -461,6 +497,13 @@ Concurrent Programming:
     tut14:start().
 
 
+Basic message passing:
+
+    c(tut_spawn).
+    Pr = tut_spawn:start().
+    Pr ! who_are_you.
+    
+
 Message passing:
 
     c(tut15).
@@ -496,14 +539,22 @@ On the windows shell started as admin (cmd => ctrl + shift + enter):
     c('C:/Users/jdaaa/PycharmProjects/erlang_tutorial/tutorials/tut17').
     tut17:start_ping('pong@DESKTOP-41R15JP').
 
+Some useful commands:
+
+    is_alive().
+    nodes().
+    erlang:get_cookie().
+    node().
+
+
 Restart on windows and enter the next:
 
     c('C:/Users/jdaaa/PycharmProjects/erlang_tutorial/tutorials/tut18').
 
 Start on ubuntu:
 
-        c(tut18).
-        tut18:start('ping@DESKTOP-41R15JP').
+    c(tut18).
+    tut18:start('ping@DESKTOP-41R15JP').
 
 Larger example:
 
